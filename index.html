@@ -527,11 +527,15 @@ function navigate(page){
  if(location.hash!=='#'+page)location.hash=page;
  activate(page);
 }
-sideLinks.forEach(a=>a.addEventListener('click',event=>{
- event.preventDefault();
- const page=(a.getAttribute('href')||'#dashboard').slice(1);
- navigate(page);
-},true));
+sideLinks.forEach(a=>{
+ const href=a.getAttribute('href');
+ // Only intercept internal workspace anchors; allow admin page and action buttons to work.
+ if(!href || !href.startsWith('#'))return;
+ a.addEventListener('click',event=>{
+  event.preventDefault();
+  navigate(href.slice(1));
+ },true);
+});
 const logo=side?.querySelector('.side-logo');
 logo?.addEventListener('click',e=>{e.preventDefault();navigate('dashboard')},true);
 $('mizanMenuButton')?.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();showMenu()},true);
