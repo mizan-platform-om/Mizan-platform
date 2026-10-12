@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /bank-feasibility.html
+Disallow: /premium.html
+Disallow: /oman-projects.html
+Sitemap: https://mizan-platform-om.github.io/Mizan-platform/sitemap.xml
